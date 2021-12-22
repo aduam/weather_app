@@ -1,13 +1,17 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
+import type { NextPage } from 'next';
+import Head from 'next/head';
+
+import { WeatherCard } from '../components';
 
 const Home: NextPage = () => {
   return (
-    <div>
-      test
-    </div>
+    <>
+      <Head>
+        <title>Home</title>
+      </Head>
+      <WeatherCard />
+    </>
   );
-}
+};
 
-export default Home
+export default Home;
