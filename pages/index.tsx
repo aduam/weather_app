@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 
-import { WeatherCard } from '../components';
+import { Search } from '../components';
 
 const Home: NextPage = () => {
   return (
@@ -9,7 +9,7 @@ const Home: NextPage = () => {
       <Head>
         <title>Home</title>
       </Head>
-      <WeatherCard />
+      <Search />
     </>
   );
 };
