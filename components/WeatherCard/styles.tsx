@@ -13,3 +13,17 @@ export const Container = styled.div`
   position: relative;
   background-color: white;
 `;
+
+export const WrapWeather = styled.div`
+  display: flex;
+  align-items: center;
+  p {
+    margin-right: 5px;
+  }
+`;
+
+export const Img = styled.img`
+  width: 32px;
+  height: 32px;
+  margin: 0 auto;
+`;

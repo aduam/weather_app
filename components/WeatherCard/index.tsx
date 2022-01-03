@@ -3,7 +3,11 @@ import { FC, useEffect, useState } from 'react';
 import { Button } from '../Button';
 import { CloseButton } from '../CloseButton';
 import { Degrees } from '../Degrees';
-import { Container } from './styles';
+import {
+  Container,
+  Img,
+  WrapWeather
+} from './styles';
 
 interface WeatherCardProps {
   temp: number;
@@ -34,15 +38,19 @@ export const WeatherCard: FC<WeatherCardProps> = ({ temp, name, onSelect, id }: 
   }
 
   let icon: string;
+  let src: string;
 
   const celsiusDegrees: number = convertKelvinToCelsius(temp);
 
   if (celsiusDegrees <= 19) {
-    icon = 'cold';
+    icon = 'Cold';
+    src = '/cold.png';
   } else if (celsiusDegrees > 19 && celsiusDegrees <= 26) {
-    icon = 'warm';
+    src = '/warm.png';
+    icon = 'Warm';
   } else {
-    icon = 'hot';
+    src = '/hot.png';
+    icon = 'Hot';
   }
 
   useEffect(() => {
@@ -59,7 +67,10 @@ export const WeatherCard: FC<WeatherCardProps> = ({ temp, name, onSelect, id }: 
       <CloseButton />
       <p>{ name }</p>
       <Degrees number={degrees} kind={kindDegrees} onSelect={convertDegrees} />
-      <p>logo: { icon }</p>
+      <WrapWeather>
+        <p>{ icon }</p>
+        <Img src={src} alt='weather logo' />
+      </WrapWeather>
       <Button
         label='Update'
         onClick={() => onSelect({ id })}
