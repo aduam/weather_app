@@ -1,4 +1,4 @@
-import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
 interface Color {
   primary: string;
@@ -15,8 +15,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
       Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    background-color: rgba(0, 0, 0, 0.05);
-    height: 100vh;
+    background: rgba(0, 0, 0, 0.05) no-repeat center center fixed;
   }
 
   a {
@@ -31,6 +30,6 @@ export const GlobalStyle = createGlobalStyle`
 
 export const theme: Theme = {
   colors: {
-    primary: '#F24D03',
-  },
+    primary: '#F24D03'
+  }
 };

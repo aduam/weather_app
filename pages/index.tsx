@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Head from 'next/head';
 import { Toaster, toast } from 'react-hot-toast';
 
-import { Search, WeatherCard } from '../components';
+import { Search, WeatherCard, ListWeatherCard } from '../components';
 import { Layout } from '../styles/Layout';
 import { getApi } from '../utils';
 
@@ -64,6 +64,7 @@ const Home: NextPage = () => {
           <Search onSelect={onSelect} />
           {state.loading && <p>Loading...</p>}
           {state.data && state.name && id && <WeatherCard temp={state.data.temp} name={state.name} onSelect={onSelect} id={id} />}
+          <ListWeatherCard />
         </>
       </Layout>
       <Toaster />

@@ -9,6 +9,7 @@ interface LayoutProps {
 const Main = styled.main`
   width: 100%;
   padding: 15px 0;
+  margin-left: 65px;
 `;
 
 const Sidebar = styled.nav`
@@ -16,7 +17,8 @@ const Sidebar = styled.nav`
   background-color: white;
   height: 100vh;
   padding: 20px 5px;
-  margin-right: 15px;
+  position: fixed;
+  left: 0;
 `;
 
 const Container = styled.div`
