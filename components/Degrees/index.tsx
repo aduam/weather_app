@@ -4,19 +4,22 @@ import {
   DegreesContainer,
   NumberDegree,
   DegreeType,
-  DegreeTypeContainer,
+  DegreeTypeContainer
 } from './styles';
+
+type kind = 'F' | 'C' | 'K';
 
 interface DegreesProps {
   number: number;
-  kind: 'F' | 'C' | 'K';
+  kind: kind;
+  onSelect: (kind: kind) => void;
 }
 
-export const Degrees: FC<DegreesProps> = ({ number, kind }: DegreesProps) => {
-  const degreeTypes = ['F', 'C', 'K'];
+export const Degrees: FC<DegreesProps> = ({ number, kind, onSelect }: DegreesProps) => {
+  const degreeTypes: kind[] = ['F', 'C', 'K'];
 
   const degreeTypesElements = () => degreeTypes.map((degree) => (
-    <DegreeType key={degree} active={degree === kind}>{degree}</DegreeType>
+    <DegreeType onClick={() => onSelect(degree)} key={degree} active={degree === kind}>{degree}</DegreeType>
   ));
 
   return (

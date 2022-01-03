@@ -9,17 +9,22 @@ import {
   reactSelectTheme,
 } from './styles';
 
+interface SearchProps {
+  onSelect: (event: any) => Promise<void>;
+}
+
 const options = locations.map((location) => ({
   id: location.id,
   value: location.name,
   label: location.name,
 }));
 
-export const Search: FC = () => {
+export const Search: FC<SearchProps> = ({ onSelect }: SearchProps) => {
   return (
     <SearchContainer>
       <Select
         options={options}
+        onChange={onSelect}
         placeholder='City'
         components={{
           DropdownIndicator,
