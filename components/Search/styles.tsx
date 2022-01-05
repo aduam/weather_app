@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FaSearch } from "react-icons/fa";
+import { FaSearch } from 'react-icons/fa';
 import { StylesConfig, ThemeConfig } from 'react-select';
 
 export const SearchContainer = styled.div`
@@ -15,20 +15,20 @@ right: 10px;
 
 export const reactSelectStyles: StylesConfig = {
   indicatorSeparator: () => ({
-    display: 'none',
+    display: 'none'
   }),
   menu: (provided) => ({
     ...provided,
     top: 32,
     padding: 0,
     borderRadius: '0 0 5px 5px',
-    borderTop: 'black',
+    borderTop: 'black'
   }),
   control: (provided) => ({
     ...provided,
     border: 'none',
-    borderRadius: '5px 5px 0 0',
-  }),
+    borderRadius: '5px 5px 0 0'
+  })
 };
 
 export const reactSelectTheme: ThemeConfig = (theme) => ({
@@ -36,6 +36,6 @@ export const reactSelectTheme: ThemeConfig = (theme) => ({
   colors: {
     ...theme.colors,
     primary25: '#f24d0759',
-    primary: '#F24D03',
-  },
+    primary: '#F24D03'
+  }
 });

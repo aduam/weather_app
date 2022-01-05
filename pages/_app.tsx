@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import { theme, GlobalStyle } from '../styles/global-styles';
 import { ItemsProvider } from '../context';
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp ({ Component, pageProps }: AppProps) {
   return (
     <>
       <GlobalStyle />
