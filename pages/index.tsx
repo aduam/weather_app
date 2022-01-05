@@ -1,11 +1,12 @@
 import type { NextPage } from 'next';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import Head from 'next/head';
 import { Toaster, toast } from 'react-hot-toast';
 
 import { Search, WeatherCard, ListWeatherCard } from '../components';
-import { Layout } from '../styles/Layout';
+import { Layout, H2 } from '../styles/Layout';
 import { getApi } from '../utils';
+import { Items } from '../context';
 
 interface OnSelectEvent {
   id: number;
@@ -34,6 +35,9 @@ interface IState {
 }
 
 const Home: NextPage = () => {
+  const {
+    items
+  } = useContext(Items);
   const [state, setState] = useState<IState>({
     data: null,
     loading: false,
@@ -53,6 +57,13 @@ const Home: NextPage = () => {
     setState({ ...state, loading: false, data: data.main, name: data.name });
   }
 
+  const getList = () => {
+    return Object.keys(items).map(item => ({
+      id: item,
+      ...items[item]
+    }));
+  };
+
   return (
     <>
       <Head>
@@ -60,11 +71,17 @@ const Home: NextPage = () => {
       </Head>
       <Layout>
         <>
-          <p>Your cities</p>
+          <H2>Your cities</H2>
           <Search onSelect={onSelect} />
-          {state.loading && <p>Loading...</p>}
-          {state.data && state.name && id && <WeatherCard temp={state.data.temp} name={state.name} onSelect={onSelect} id={id} />}
-          <ListWeatherCard />
+          {state.data && state.name && id && (
+            <WeatherCard
+            id={id}
+              temp={state.data.temp}
+              name={state.name}
+              onSelect={onSelect}
+            />
+          )}
+          <ListWeatherCard list={getList()} />
         </>
       </Layout>
       <Toaster />

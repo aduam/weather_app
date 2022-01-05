@@ -1,4 +1,5 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState, useContext } from 'react';
+import { toast } from 'react-hot-toast';
 
 import { Button } from '../Button';
 import { CloseButton } from '../CloseButton';
@@ -8,11 +9,12 @@ import {
   Img,
   WrapWeather
 } from './styles';
+import { getApi } from '../../utils';
+import { Items } from '../../context';
 
 interface WeatherCardProps {
   temp: number;
   name: string;
-  onSelect: (args: { id: number }) => Promise<void>;
   id: number;
 }
 
@@ -21,9 +23,11 @@ type kindOfDegrees = 'F' | 'C' | 'K';
 const CELSIUS_BASE = 273.15;
 const FAHRENHEIT = 459.67;
 
-export const WeatherCard: FC<WeatherCardProps> = ({ temp, name, onSelect, id }: WeatherCardProps) => {
+export const WeatherCard: FC<WeatherCardProps> = ({ temp, name, id }: WeatherCardProps) => {
   const [kindDegrees, setKindDegrees] = useState<kindOfDegrees>('K');
   const [degrees, setDegrees] = useState<number>(temp);
+  const [loading, setLoading] = useState<boolean>(false);
+  const { items, setItems } = useContext(Items);
 
   const convertKelvinToCelsius = (degrees: number): number => {
     return +(degrees - CELSIUS_BASE).toFixed(2);
@@ -53,6 +57,25 @@ export const WeatherCard: FC<WeatherCardProps> = ({ temp, name, onSelect, id }: 
     icon = 'Hot';
   }
 
+  const updateItem = async (id: number): Promise<void> => {
+    setLoading(true);
+    const data = await getApi({ cityId: id });
+    if (data?.cod !== 200) {
+      toast.error('There was an error');
+    } else {
+      toast.success(`${data.name} was updated`);
+      setItems({ ...items, [`i-${id}`]: { main: { ...data.main }, name: data.name } });
+    }
+    setLoading(false);
+  };
+
+  const removeItem = (id: number) => {
+    const copyItems = { ...items };
+    delete copyItems[`i-${id}`];
+    setItems({ ...copyItems });
+    toast.success('Item was removed');
+  };
+
   useEffect(() => {
     const list: Record<string, number> = {
       K: temp,
@@ -64,7 +87,7 @@ export const WeatherCard: FC<WeatherCardProps> = ({ temp, name, onSelect, id }: 
 
   return (
     <Container>
-      <CloseButton />
+      <CloseButton id={id} onClick={removeItem} />
       <p>{ name }</p>
       <Degrees number={degrees} kind={kindDegrees} onSelect={convertDegrees} />
       <WrapWeather>
@@ -72,8 +95,8 @@ export const WeatherCard: FC<WeatherCardProps> = ({ temp, name, onSelect, id }: 
         <Img src={src} alt='weather logo' />
       </WrapWeather>
       <Button
-        label='Update'
-        onClick={() => onSelect({ id })}
+        label={loading ? 'loading' : 'Update'}
+        onClick={() => updateItem(id)}
         isLoading={ false }
         loadingLabel='Loading...'
       />

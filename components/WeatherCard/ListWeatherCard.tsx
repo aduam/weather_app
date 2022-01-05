@@ -1,35 +1,17 @@
 import { WeatherCard } from '.';
+import { ListContainer } from './styles';
 
-export const ListWeatherCard = () => {
-  const asdf = async (args: { id: number }): Promise<void> => {
-    console.log(args);
-  }
+export const ListWeatherCard = ({ list }: { list: any[] }) => {
   return (
-    <div>
-      <WeatherCard
-        id={3671002}
-        name='1'
-        onSelect={asdf}
-        temp={300}
-      />
-      <WeatherCard
-        id={3671002}
-        name='2'
-        onSelect={asdf}
-        temp={275}
-      />
-      <WeatherCard
-        id={3671002}
-        name='3'
-        onSelect={asdf}
-        temp={280}
-      />
-      <WeatherCard
-        id={3671002}
-        name='4'
-        onSelect={asdf}
-        temp={295}
-      />
-    </div>
+    <ListContainer>
+      {list.map((item) => (
+        <WeatherCard
+          key={item.id}
+          id={Number(item.id.substring(2))}
+          name={item.name}
+          temp={item.main.temp}
+        />
+      ))}
+    </ListContainer>
   );
 };

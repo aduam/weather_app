@@ -2,8 +2,13 @@ import { FC } from 'react';
 
 import { CloseButtonStyle } from './styles';
 
-export const CloseButton: FC = () => {
+interface CloseButtonProps {
+  id: number,
+  onClick: (id: number) => void;
+}
+
+export const CloseButton: FC<CloseButtonProps> = ({ id, onClick }: CloseButtonProps) => {
   return (
-    <CloseButtonStyle>X</CloseButtonStyle>
+    <CloseButtonStyle onClick={() => onClick(id)}>X</CloseButtonStyle>
   );
 };

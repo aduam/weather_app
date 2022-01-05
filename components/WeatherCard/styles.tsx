@@ -27,3 +27,14 @@ export const Img = styled.img`
   height: 32px;
   margin: 0 auto;
 `;
+
+export const ListContainer = styled.div`
+  @media screen and (min-width: 480px) {
+    display: flex;
+    flex-wrap: wrap;
+
+    div {
+      margin-right: 10px;
+    }
+  }
+`;

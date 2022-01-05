@@ -15,7 +15,14 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
       Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    background: rgba(0, 0, 0, 0.05) no-repeat center center fixed;
+  }
+
+  html {
+    background: rgba(0, 0, 0, 0.05) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
   }
 
   a {

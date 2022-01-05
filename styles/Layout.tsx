@@ -8,8 +8,8 @@ interface LayoutProps {
 
 const Main = styled.main`
   width: 100%;
-  padding: 15px 0;
-  margin-left: 65px;
+  padding: 15px 0 15px 15px;
+  margin-left: 50px;
 `;
 
 const Sidebar = styled.nav`
@@ -23,8 +23,13 @@ const Sidebar = styled.nav`
 
 const Container = styled.div`
   width: 100%;
-  height: 100%;
   display: flex;
+`;
+
+export const H2 = styled.h2`
+  color: ${({ theme }) => theme.colors.primary};
+  font-size: 20px;
+  font-weight: 500;
 `;
 
 export const Layout = ({ children }: LayoutProps) => {
