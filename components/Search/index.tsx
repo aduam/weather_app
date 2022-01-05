@@ -49,7 +49,7 @@ export const Search: FC<SearchProps> = ({ onSelect }: SearchProps) => {
     <SearchContainer>
       <Select
         options={options}
-        onChange={setNewItem}
+        onChange={(event: any) => setNewItem(event)}
         placeholder='City'
         components={{
           DropdownIndicator
