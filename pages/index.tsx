@@ -75,10 +75,9 @@ const Home: NextPage = () => {
           <Search onSelect={onSelect} />
           {state.data && state.name && id && (
             <WeatherCard
-            id={id}
+              id={id}
               temp={state.data.temp}
               name={state.name}
-              onSelect={onSelect}
             />
           )}
           <ListWeatherCard list={getList()} />
